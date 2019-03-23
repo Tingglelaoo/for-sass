@@ -1,0 +1,43 @@
+// ----------------------- REM的SASS ----------------------- //
+
+$rem_grid : 20 !default;
+$page_width : 320 !default;
+
+@function rem($val){
+    $rem : $val / $rem_grid;
+    @if $rem == 0 {
+        @return #{$rem} ;
+    }@else{
+        @return $rem / ($rem * 0 + 1) * 1rem;
+    }
+}
+
+// ----------------------- HTML FONT-SIZE ----------------------- //
+html{
+  font-size: $rem_grid * 1px;
+
+  // 媒体查询
+  @mixin query( $limit ) {
+      @media screen and ( min-width: $limit){
+          &{
+              @content;
+          }
+      }
+  }
+
+  @mixin rem_cross( $width ) {
+      @include query( $width * 1px ) {
+          font-size:  $width / $page_width * $rem_grid * 1px;
+      }
+  }
+
+  @include rem_cross(320);//iPhone5
+  @include rem_cross(360);//Nexus5
+  @include rem_cross(375);//iPhone6
+  @include rem_cross(384);//Nexus4
+  @include rem_cross(411);//Nexus6
+  @include rem_cross(414);//iPhone6+
+  @include rem_cross(480);//Samsung Galaxy Note 4
+  @include rem_cross(540);//Sony Xperia C4
+}
+
