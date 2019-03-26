@@ -478,4 +478,21 @@ $rem_grid: 20 !default;
     }
 }
 
+// 逐帧动画的keyframes
+// $name: 动画帧命名
+// $width: 精灵宽度（雪碧图需要横向排列，间距为0）
+// $count: 帧数
+// $content: animations 参数设置，字符串形式传入，包括 duration delay iteration-count direction
+// 使用：@include frames-ani('demo', 140, 12, '1s 5s infinite forwards');
+@mixin frames-ani($name, $width, $count, $content) {
+  @keyframes ani-#{$name} {
+    100% {
+      background-position: ($width * $count) * 1px; 
+    }
+  }
+
+  #{$name} {
+    animation: ani-#{$name} steps($count, end) #{$content};
+  }
+}
  /* stylelint-enable */
