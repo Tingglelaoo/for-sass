@@ -1,0 +1,23 @@
+/**
+ * set HTML FONTSIZE for REM unit via Viewport.
+ * @author tentenli
+ */
+
+$base-width: 375;
+$base-fontsize: 20;
+$radio: $base-width / $base-fontsize;
+
+html {
+  font-size: 20px; /* fallback */
+  font-size: $radio * 100vw; /* iOS 8+, Android 4.4+, IE 9+, Safari 6+, Chrome 20+ */
+
+  /* min-size */
+  @media screen and (max-width: 320px) {
+    font-size: $radio * 320px;
+  }
+
+  /* max-size */
+  @media screen and (min-width: 540px) {
+    font-size: $radio * 540px;
+  }
+}
